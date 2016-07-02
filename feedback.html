@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ADG Consultancy and Services</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script language="javascript">
+  function initialize(){
+  var locate = window.location;
+  document.frmmain.data.value = locate;
+  var l_str = document.frmmain.data.value;
+  var point;
+  var l_name = delineate(l_str);
+  point = l_str.substring(l_str.indexOf("&") + 1, l_str.length);
+  var l_email = delineate(point);
+  point = point.substring(point.indexOf("&") + 1, point.length)+"&";
+  var l_data = delineate(point);
+	
+	document.getElementById('uname').innerHTML = replaceAll(l_name,'+',' ');
+	document.getElementById('uemail').innerHTML = l_email.replace('%40','@');
+	document.getElementById('fdbck').innerHTML = replaceAll(replaceAll(l_data,'+',' '),	'%0D%0A','<br>');
+  }
+ 
+	function delineate(str){
+		var theleft = str.indexOf("=") + 1;
+		var theright = str.indexOf("&");
+		return(str.substring(theleft, theright));
+	}
+	function replaceAll(str, replaceto, replaceby){
+		str = str.replace(replaceto, replaceby);
+		var l_index = str.indexOf(replaceto);
+		if(l_index > 0){
+			 return replaceAll(str, replaceto, replaceby);
+		}
+		return str;
+	}
+  </script>
+</head>
+<body style="background-color: lightblue" onLoad="initialize();">
+<div class="container">
+	<div class="row">
+		<div class="col-sm-1">
+			<img class="img-responsive" src="ADGCS.jpg" alt="ADG" height="50%">
+		</div>
+		<div class="col-sm-9">
+			<h1>ADG Consultancy and Services</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-2">
+			<a href="ADGCS.html">Home</a>
+		</div>
+		<div class="col-sm-2">
+			<a href="courses.html">Courses</a>
+		</div>
+		<div class="col-sm-2">
+			<a href="aboutUs.html">About us</a>
+		</div>
+		<div class="col-sm-2">
+			<a href="contactUs.html">Contact Us</a>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<form name="frmmain">
+		<p>Your Feedback is recieved by Us. Your feedback is valuable to us. Thank you for sharing your feedback. Please find below details submitted by you.</p>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<tr>
+					<th>Name:</th>
+					<td id="uname"></td>
+				</tr>
+				<tr>
+					<th>Email:</th>
+					<td id="uemail"></td>
+				</tr>
+				<tr>
+					<th>Feedback:</th>
+					<td id="fdbck"></td>
+				</tr>
+			</table>
+		</div>			
+		<input type="hidden" name="data" value="">
+	</form>
+</div>	
+</body>
+</html>
